@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGO_URL).then(console.log("Connected with DATABAS
 
 app.use('/api/auth', authRoute);
 
-app.use('/api/user', userRoute);
+app.use('/api/user', userRoute); //updation route
 
 app.listen(port, () => {
     // console.log(process.env.MONGO_URL)
