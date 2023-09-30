@@ -2,4 +2,8 @@ node_modules
 package.json
 yarn.lock
 package-lock.json
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> 82532d9e301f1faedb1c5065f51b025f15f36fc1
