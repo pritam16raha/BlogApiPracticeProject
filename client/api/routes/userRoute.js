@@ -5,6 +5,7 @@ const router = express.Router();
 const user = require('../models/userModel');
 
 const bcrypt = require('bcrypt');
+const { default: mongoose, Schema } = require('mongoose');
 
 const saltRounds = 10;
 
@@ -40,8 +41,8 @@ router.delete('/delete/:id', async (req, res) => {
                 res.status(400).json("Password is wrong");
             }else{
                 try{
-                const deleteUser = await user.findByIdAndDelete(req.params.id)
-                res.status(200).json("user deleted successfully", deleteUser);
+                const deleteUser = await user.findByIdAndDelete(req.params.id);
+                res.status(200).json(deleteUser);
             } catch(err){
                 res.status(500).json(err);
                 }
@@ -49,7 +50,26 @@ router.delete('/delete/:id', async (req, res) => {
     } else{
         res.status(401).json("You can delete only your account!");
     }
+});
 
-})
+//get user
+router.get('/view/:id', async (req, res) => {
+    try{
+        const User = await user.findById(req.params.id).select("-password -__v");
+        res.status(200).json(User);
+    }catch(err){
+        res.status(401).json(err);
+    }
+});
+
+//get all user
+router.get('/data/all', async (req, res) => {
+    
+        const myData = await user.find();
+        
+        res.status(200).json(myData);
+    }
+)
+
 
 module.exports = router;
