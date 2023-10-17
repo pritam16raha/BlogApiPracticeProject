@@ -65,13 +65,22 @@ router.get('/getonepost/:id', async(req, res) => {
 //get all post
 
 router.get('/getall', async(req, res) => {
+    const username = req.query.user;
+    const catName = req.query.cat;
     try{
-        const allpost = await Post.find().select('-__v');
-        res.status(200).json(allpost);
+        let posts;
+        if(username){
+            posts = await Post.find({ username });
+        }else if(catName){
+            posts = await Post.find({ catagories: {$in: [catName] } });
+        } else{
+            posts = await Post.find();
+        }
+        res.status(200).json(posts);
     } catch(err){
         res.status(401).json(err);
     }
-})
+});
 
 
 module.exports = router;

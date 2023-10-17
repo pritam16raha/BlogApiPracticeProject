@@ -11,6 +11,8 @@ const userRoute = require('./routes/userRoute');
 
 const postRoute = require('./routes/postRoute');
 
+const catRoute = require('./routes/catagoryRoute');
+
 
 const port = 5000;
 
@@ -25,6 +27,8 @@ app.use('/api/user', userRoute); //updation route
 app.use('/api/auth', authRoute);
 
 app.use('/api/blog', postRoute);
+
+app.use('/api', catRoute);
 
 
 console.log(port);

@@ -4,11 +4,12 @@ const catagorySchema = new mongoose.Schema({
     
    name: {
     type: String,
-    require: true
+    require: true,
+    unique: true
    }
 
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model("catagories", catagorySchema);
+module.exports = mongoose.model("catagory", catagorySchema);
