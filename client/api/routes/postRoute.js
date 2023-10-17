@@ -52,5 +52,26 @@ router.delete('/delete/:id', async(req, res) => {
     }
 });
 
+//get post
+router.get('/getonepost/:id', async(req, res) => {
+    try{
+        const post = await Post.findById(req.params.id);
+        res.status(200).json(post);
+    } catch(err){
+        res.status(401).json(err);
+    }
+});
+
+//get all post
+
+router.get('/getall', async(req, res) => {
+    try{
+        const allpost = await Post.find().select('-__v');
+        res.status(200).json(allpost);
+    } catch(err){
+        res.status(401).json(err);
+    }
+})
+
 
 module.exports = router;

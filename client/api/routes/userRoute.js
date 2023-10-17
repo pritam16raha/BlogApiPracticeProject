@@ -65,9 +65,12 @@ router.get('/view/:id', async (req, res) => {
 //get all user
 router.get('/data/all', async (req, res) => {
     
-        const myData = await user.find();
-        
-        res.status(200).json(myData);
+        try{
+            const myData = await user.find();
+            res.status(200).json(myData);
+        } catch(err){
+            res.status(401).json(err);
+        }
     }
 )
 
