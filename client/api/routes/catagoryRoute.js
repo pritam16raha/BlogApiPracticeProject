@@ -11,4 +11,15 @@ router.post('/catagory', async (req, res) => {
     }
 });
 
+//fetch all catagories
+
+router.get('/allCatagories', async(req, res) => {
+    try{
+        const allCat = await Catagory.find();
+        res.status(200).json(allCat);
+    } catch(err){
+        res.status(401).json(err);
+    }
+});
+
 module.exports = router;
